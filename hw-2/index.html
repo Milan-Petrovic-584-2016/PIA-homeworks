@@ -15,6 +15,12 @@
         /*100%*/
         margin: auto;
     }
+    
+    #sub {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
 </style>
 </style>
 
@@ -26,6 +32,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
     <title>Golub pizza!</title>
 </head>
@@ -159,7 +166,48 @@
         </div>
         <div class="bg-info" id="kontakt">
             <h2 style="font-weight: bolder;margin-bottom: 1em;">Kontakt</h2>
+            <form role="form">
+
+                <!-- Input Fields -->
+                <div class="form-group col-sm-6 ">
+
+                    <input type="text" class="form-control" id="name" required placeholder="Unesite ime">
+                </div>
+
+                <div class="form-group  col-sm-6 ">
+
+                    <input type="text" class="form-control" id="sur" required placeholder="Unesite prezime">
+                </div>
+
+                <div class="form-group  col-sm-6 ">
+
+                    <input type="email" class="form-control" id="email" placeholder="Unesite email" required>
+                </div>
+
+                <div class="from-group  col-sm-6 ">
+
+                    <input style="margin-bottom: 1em;" type="tel" class="form-control" id="tel" placeholder="Unesite telefon,nije neophodno(+381651234567)"> </div>
+
+
+
+                <div class="form-group d-flex justify-content-center col-sm-12 col-12 col-md-12 col-lg-12 col-xl-12">
+
+                    <textarea class="form-control " rows="5 " id="comment " placeholder="Unesite komentar " required></textarea>
+                </div>
+                <div class="d-flex justify-content-center ">
+                    <div class="from-group" id="sub ">
+
+                        <button type="submit " class="btn btn-danger btn-block  pr-1 pl-1">Submit</button>
+                    </div>
+                </div>
+
+            </form>
         </div>
+        <div class="footer bg-primary" style="margin-top: 1em;">
+            mi
+        </div>
+
+
     </div>
 
 
