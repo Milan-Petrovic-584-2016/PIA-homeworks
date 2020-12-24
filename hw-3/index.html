@@ -12,6 +12,7 @@
     <!--Latest compiled Java Script-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <title>Kviz</title>
+    <script src="./scripte.js"></script>
 
 </head>
 
@@ -22,8 +23,8 @@
             <button id="tsp" class="btn btn-outline-primary ">Tablica sa poenima(Top 10 igrača)</button>
             <button id="zi" class="btn btn-outline-primary ">Započni igru</button>
         </div>
-        <div id="pr2" class="slide ">
-            <form class="">
+        <div id="pr2" class="slide justify-content-around">
+            <form>
 
                 <div class="form-group row">
                     <label for="inputIme" class="col-sm-2 col-form-label">Ime</label>
@@ -38,11 +39,38 @@
                     </div>
                 </div>
                 <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-warning">Cancel</button>
+                    <button id="sbm" type="button" class="btn btn-primary">Submit</button>
+                    <button id="cnl" type="button" class="btn btn-warning">Cancel</button>
                 </div>
             </form>
         </div>
+        <div id="pr3">
+            <div>
+                <h2 style="text-align: center;">Upustvo</h2>
+            </div><br><br>
+            <div>
+                <p>Prilikom registracije vi ste uneli vaše ime i vašu omiljenu boju. Ime vaše ne sme da se nalazi u top 10 igrača sa istom omiljenom bojom koji imaju najviše pojena, da bi ste mogli da nađete svoje ime u toj tabeli ako imate najveći skor(koji
+                    se nalazi izmdju 10 najboljih igrača). Kao što možete da pretpostavite, ime vaše će biti uneto sa vašom omiljenom bojom i pojena, takođe sa vašom omiljenom bojom.</p>
+                <p>
+                    Kada budete počeli sa kvizom, postoje neka pravila, kako se odgovara. Kviz se sastoji od 15 pitanja. Postoje dva načina odgovaranja na pitanja. Prvi način je da pritiskom strelice misa na neki od ponuđenih odgovara, a drugi je da napišete tačan odgovor
+                    preko tastature. Treba da ogovorite na 15 pitanja.Imate 20 sekundi za svako pitanje da odgovorite na njega. Ako ne uspete da odgovorite za 20 sekundi, onda dobijate sledeće pitanje ako niste dobili svih 15 pitanja ili ste zavrsili
+                    sa kvizom.Svaki tačan odgovor nosi po jedan pojen, a netačan po 0 poena. Ako njaviše pojena imate na listi top 10, onda dobijate 3 poena dodatno, svaki tačan odgovor na pitanje nosi 1 poen. Igrač kviza može da preskoči pitanje ako
+                    ne zna, ako to učini dobija 0 poena i sledeće pitanje ako nije odgovorio na svih 15 pitanja. Igrač može da odustane od igre, ali ako je do tada među deset najbolji koi su učestvovali u našem kvizu, onda se nalazi na našoj listi. Korisnik
+                    prilikom odgovaranja će videti da li mu je odgovor tačan ili ne, kada bude odgovorio na pitanje.Na kraju će igrač moći da vidi svoje osvojene pojene.
+                </p>
+                <p>
+                    Pritisnite pasos ispod da bi ste poceli
+                </p>
+                <p id=start style="text-align: center;background-color: blanchedalmond;">Počni kviz</p>
+            </div>
+
+        </div>
+        <div id="pr4">
+            <div id="menu"></div>
+            <div id="pitanje"></div>
+            <div class="odgovor"></div>
+        </div>
+        <div id="pr5"></div>
     </div>
 </body>
 

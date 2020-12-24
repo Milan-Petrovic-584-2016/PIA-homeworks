@@ -16,7 +16,40 @@ h1 {
 }
 
 #pr2 {
+    display: none;
     height: 15em;
     background: aquamarine;
     padding: 3em;
+}
+
+#pr3 {
+    display: block;
+    height: 40em;
+    text-align: justify;
+    background: aquamarine;
+    padding: 3em;
+}
+
+#pr4 {
+    height: 35em;
+    background-color: aquamarine;
+    padding: 2em;
+}
+
+#menu {
+    display: flex;
+    height: 3em;
+    border: 1px solid white;
+}
+
+#pitanje {
+    display: flex;
+    height: 17em;
+    border: 1px solid white;
+}
+
+.odgovor {
+    display: flex;
+    height: 12em;
+    border: 1px solid white;
 }
