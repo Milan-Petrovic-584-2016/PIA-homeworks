@@ -1,0 +1,70 @@
+.container {
+    margin: 5%;
+}
+
+#pr1 {
+    display: flex;
+    /*flex*/
+    height: 40em;
+    background: aquamarine;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#pr2 {
+    display: none;
+    height: 15em;
+    background: aquamarine;
+    padding: 3em;
+}
+
+#pr3 {
+    display: none;
+    height: 40em;
+    text-align: justify;
+    background: aquamarine;
+    padding: 3em;
+}
+
+#pr4 {
+    display: none;
+    height: 35em;
+    background-color: aquamarine;
+    padding: 2em;
+}
+
+#menu {
+    display: flex;
+    height: 3em;
+    border: 1px solid white;
+}
+
+#pitanje {
+    display: flex;
+    height: 17em;
+    border: 1px solid white;
+}
+
+#odgovor1 {
+    display: none;
+    height: 12em;
+    border: 1px solid white;
+}
+
+#odgovor2 {
+    display: block;
+    height: 12em;
+}
+
+#a,
+#b,
+#c,
+#d {
+    border: 1px solid white;
+    background-color: goldenrod;
+    text-align: center
+}
