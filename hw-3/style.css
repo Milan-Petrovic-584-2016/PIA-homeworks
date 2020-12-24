@@ -1,0 +1,22 @@
+.container {
+    margin: 5%;
+}
+
+#pr1 {
+    display: none;
+    /*flex*/
+    height: 40em;
+    background: aquamarine;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+#pr2 {
+    height: 15em;
+    background: aquamarine;
+    padding: 3em;
+}
