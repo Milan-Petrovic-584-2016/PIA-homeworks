@@ -4,7 +4,7 @@ class Osoba {
     name = "";
     boja = "#000000";
     poeni = 0;
-    pitanjeRed = 0; //menjao 0
+    pitanjeRed = 0;
     timer = 0;
 
     pitanje2Tipa = [4, 8, 12, 14, 15];
@@ -213,12 +213,48 @@ document.getElementById("rez").addEventListener('click', function() {
     igrac.pitanjeRed++;
     igrac.incS();
     if (14 < igrac.pitanjeRed) {
+        //DORADI
         document.getElementById("pr4").style.display = "none";
 
         document.getElementById("pr5").style.display = "flex";
+        document.getElementById("text").style.color = igrac.boja
+        document.getElementById("ime").innerHTML = igrac.name;
+        document.getElementById("poen").innerHTML = igrac.poeni;
+        igrac = null;
 
     } else {
         window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
     }
 
+})
+
+document.getElementById("odustani").addEventListener("click", function() {
+    //DORADI
+    document.getElementById("pr4").style.display = "none";
+
+    document.getElementById("pr5").style.display = "flex";
+    document.getElementById("text").style.color = igrac.boja
+    document.getElementById("ime").innerHTML = igrac.name;
+    document.getElementById("poen").innerHTML = igrac.poeni;
+    igrac = null;
+})
+
+document.getElementById("sledece").addEventListener("click", function() {
+    igrac.pitanjeRed++;
+    if (pitanje2[s1] == igrac.pitanjeRed) {
+        igrac.incS();
+        s1++;
+    }
+    if (igrac.pitanjeRed == 15) {
+        //DORADI
+        document.getElementById("pr4").style.display = "none";
+
+        document.getElementById("pr5").style.display = "flex";
+        document.getElementById("text").style.color = igrac.boja
+        document.getElementById("ime").innerHTML = igrac.name;
+        document.getElementById("poen").innerHTML = igrac.poeni;
+        igrac = null;
+    } else {
+        igrac.generateQuestion();
+    }
 })

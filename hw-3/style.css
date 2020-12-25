@@ -43,6 +43,7 @@ h1 {
     height: 15em;
     text-align: justify;
     padding: 3em;
+    background-color: aqua;
 }
 
 #menu {
@@ -74,9 +75,16 @@ h1 {
 #d {
     border: 1px solid white;
     background-color: goldenrod;
-    text-align: center
+    text-align: center;
 }
 
 #upis {
     text-align: center;
+}
+
+#text {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
 }
