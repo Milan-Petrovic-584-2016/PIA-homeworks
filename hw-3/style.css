@@ -3,7 +3,7 @@
 }
 
 #pr1 {
-    display: none;
+    display: flex;
     /*flex*/
     height: 40em;
     background: aquamarine;
@@ -23,17 +23,26 @@ h1 {
 }
 
 #pr3 {
-    display: block;
+    display: none;
     height: 40em;
     text-align: justify;
     background: aquamarine;
+    /*lightgreen;*/
     padding: 3em;
 }
 
 #pr4 {
+    display: none;
     height: 35em;
     background-color: aquamarine;
     padding: 2em;
+}
+
+#pr5 {
+    display: none;
+    height: 15em;
+    text-align: justify;
+    padding: 3em;
 }
 
 #menu {
@@ -48,8 +57,26 @@ h1 {
     border: 1px solid white;
 }
 
-.odgovor {
-    display: flex;
+#odgovor1 {
+    display: none;
     height: 12em;
     border: 1px solid white;
+}
+
+#odgovor2 {
+    display: block;
+    height: 12em;
+}
+
+#a,
+#b,
+#c,
+#d {
+    border: 1px solid white;
+    background-color: goldenrod;
+    text-align: center
+}
+
+#upis {
+    text-align: center;
 }
