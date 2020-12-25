@@ -5,7 +5,6 @@ class Osoba {
     boja = "#000000";
     poeni = 0;
     pitanjeRed = 0;
-    timer = 0;
 
     pitanje2Tipa = [4, 8, 12, 14, 15];
     s = 0;
@@ -22,8 +21,10 @@ class Osoba {
         this.s++;
     }
 
+
     generateQuestion() {
-        //popravi
+
+
         if (this.pitanje2Tipa[this.s] - 1 == this.pitanjeRed) {
             document.getElementById("pr5").style.display = "none";
             document.getElementById("odgovor1").style.display = "flex";
@@ -47,13 +48,7 @@ class Osoba {
             document.getElementById("d").innerText = "D) " + jsonData[this.pitanjeRed].opt4;
 
         }
-
     }
-
-    startTimer() {
-        document.getElementById("timer").innerText = " " + this.timer + " sec";
-    }
-
 
 }
 
@@ -64,13 +59,9 @@ var igrac;
 let ime;
 let boja;
 
+
 pitanje2 = [4, 8, 12, 14, 15];
 s1 = 0;
-
-
-
-
-
 
 $(document).ready(function() {
     $("#zi").click(function() {
@@ -111,7 +102,6 @@ $(document).ready(function() {
 
         //igrac.getOsoba();
         igrac.generateQuestion();
-        igrac.startTimer();
 
     })
 
@@ -126,6 +116,8 @@ document.getElementById("a").addEventListener('click', function() {
         if (jsonData[igrac.pitanjeRed].opt2 == jsonData[igrac.pitanjeRed].answer) {
             document.getElementById("b").style.background = "lightgreen";
         }
+
+        window.setTimeout("this.nextQuest()", 20000);
         if (jsonData[igrac.pitanjeRed].opt3 == jsonData[igrac.pitanjeRed].answer) {
             document.getElementById("c").style.background = "lightgreen";
         }
@@ -135,7 +127,7 @@ document.getElementById("a").addEventListener('click', function() {
     }
 
     igrac.pitanjeRed++;
-    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+    window.setTimeout("igrac.generateQuestion()", 3000);
 
 
 
@@ -159,7 +151,7 @@ document.getElementById("b").addEventListener('click', function() {
         }
     }
     igrac.pitanjeRed++;
-    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+    window.setTimeout("igrac.generateQuestion()", 3000);
 
 
 })
@@ -180,7 +172,7 @@ document.getElementById("c").addEventListener('click', function() {
         }
     }
     igrac.pitanjeRed++;
-    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+    window.setTimeout("igrac.generateQuestion()", 3000);
 })
 document.getElementById("d").addEventListener('click', function() {
     if (jsonData[igrac.pitanjeRed].opt4 == jsonData[igrac.pitanjeRed].answer) {
@@ -200,7 +192,7 @@ document.getElementById("d").addEventListener('click', function() {
     }
     igrac.pitanjeRed++;
 
-    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+    window.setTimeout("igrac.generateQuestion()", 3000);
 })
 
 document.getElementById("rez").addEventListener('click', function() {
@@ -213,25 +205,23 @@ document.getElementById("rez").addEventListener('click', function() {
     igrac.pitanjeRed++;
     igrac.incS();
     if (14 < igrac.pitanjeRed) {
-        //DORADI
         document.getElementById("pr4").style.display = "none";
-
+        slide++;
         document.getElementById("pr5").style.display = "flex";
         document.getElementById("text").style.color = igrac.boja
         document.getElementById("ime").innerHTML = igrac.name;
         document.getElementById("poen").innerHTML = igrac.poeni;
-        igrac = null;
+
 
     } else {
-        window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+        window.setTimeout("igrac.generateQuestion()", 3000);
     }
 
 })
 
 document.getElementById("odustani").addEventListener("click", function() {
-    //DORADI
     document.getElementById("pr4").style.display = "none";
-
+    slide++;
     document.getElementById("pr5").style.display = "flex";
     document.getElementById("text").style.color = igrac.boja
     document.getElementById("ime").innerHTML = igrac.name;
@@ -246,9 +236,8 @@ document.getElementById("sledece").addEventListener("click", function() {
         s1++;
     }
     if (igrac.pitanjeRed == 15) {
-        //DORADI
         document.getElementById("pr4").style.display = "none";
-
+        slide++;
         document.getElementById("pr5").style.display = "flex";
         document.getElementById("text").style.color = igrac.boja
         document.getElementById("ime").innerHTML = igrac.name;
@@ -258,3 +247,24 @@ document.getElementById("sledece").addEventListener("click", function() {
         igrac.generateQuestion();
     }
 })
+var timer = 0;
+
+function nextQuest() {
+    igrac.pitanjeRed++;
+    if (pitanje2[s1] == igrac.pitanjeRed) {
+        igrac.incS();
+        s1++;
+    }
+    if (igrac.pitanjeRed == 15) {
+        document.getElementById("pr4").style.display = "none";
+        slide++;
+        document.getElementById("pr5").style.display = "flex";
+        document.getElementById("text").style.color = igrac.boja
+        document.getElementById("ime").innerHTML = igrac.name;
+        document.getElementById("poen").innerHTML = igrac.poeni;
+        igrac = null;
+    } else {
+        igrac.generateQuestion();
+    }
+}
+incTimer()
