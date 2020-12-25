@@ -63,7 +63,7 @@ var jsonData = [{
         "answer": "Veneciji"
     },
     {
-        "q": "1)Iako su ga režirali čak trojica reditelja, Oskara za \"Prohujalo sa vihorom\" dobijo je samo...",
+        "q": "11)Iako su ga režirali čak trojica reditelja, Oskara za \"Prohujalo sa vihorom\" dobijo je samo...",
         "opt1": "Viktor Fleming",
         "opt2": "Džordž Kjukor",
         "opt3": "Viliam Vajlerng",

@@ -27,6 +27,7 @@ h1 {
     height: 40em;
     text-align: justify;
     background: aquamarine;
+    /*lightgreen;*/
     padding: 3em;
 }
 
@@ -35,6 +36,13 @@ h1 {
     height: 35em;
     background-color: aquamarine;
     padding: 2em;
+}
+
+#pr5 {
+    display: none;
+    height: 15em;
+    text-align: justify;
+    padding: 3em;
 }
 
 #menu {
@@ -67,4 +75,8 @@ h1 {
     border: 1px solid white;
     background-color: goldenrod;
     text-align: center
+}
+
+#upis {
+    text-align: center;
 }

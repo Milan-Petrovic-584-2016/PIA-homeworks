@@ -1,8 +1,10 @@
+let mi = "miki";
+mi.toLowerCase
 class Osoba {
     name = "";
     boja = "#000000";
     poeni = 0;
-    pitanjeRed = 0;
+    pitanjeRed = 0; //menjao 0
     timer = 0;
 
     pitanje2Tipa = [4, 8, 12, 14, 15];
@@ -16,19 +18,28 @@ class Osoba {
     getOsoba() {
         console.log("ime ", this.name, " poen ", this.poeni, " boja: ", this.boja);
     }
+    incS() {
+        this.s++;
+    }
 
     generateQuestion() {
         //popravi
         if (this.pitanje2Tipa[this.s] - 1 == this.pitanjeRed) {
+            document.getElementById("pr5").style.display = "none";
             document.getElementById("odgovor1").style.display = "flex";
             document.getElementById("odgovor2").style.display = "none";
+            document.getElementById("upis").value = "";
             document.getElementById("pitanje").innerText = jsonData[this.pitanjeRed].q;
-            this.s++;
+
 
         } else {
             document.getElementById("odgovor2").style.display = "block";
             document.getElementById("odgovor1").style.display = "none";
-
+            document.getElementById("pr5").style.display = "none";
+            document.getElementById("a").style.backgroundColor = "goldenrod";
+            document.getElementById("b").style.backgroundColor = "goldenrod";
+            document.getElementById("c").style.backgroundColor = "goldenrod";
+            document.getElementById("d").style.backgroundColor = "goldenrod";
             document.getElementById("pitanje").innerText = jsonData[this.pitanjeRed].q;
             document.getElementById("a").innerText = "A) " + jsonData[this.pitanjeRed].opt1;
             document.getElementById("b").innerText = "B) " + jsonData[this.pitanjeRed].opt2;
@@ -38,41 +49,7 @@ class Osoba {
         }
 
     }
-    checkAnswer(a) {
-        if (this.pitanje2Tipa[this.s] - 1 == this.pitanjeRed) {
 
-        } else {
-            switch (a) {
-                case 1:
-                    if (jsonData[i].opt1 == "A) " + jsonData[i].answer) { tacno++; } else {
-                        //pritisli smo A, ali je A ne tacno
-                    }
-                    break
-                case 2:
-                    if (jsonData[i].opt2 == "B) " + jsonData[i].answer) { tacno++; } else {
-                        //pritisli smo B, ali je B ne tacno
-                    }
-                case 3:
-
-                    if (jsonData[i].opt3 == "C) " + jsonData[i].answer) { tacno++; } else {
-                        //pritisli smo C, ali je C ne tacno
-                    }
-
-                case 4:
-                    if (jsonData[i].opt4 == "D) " + jsonData[i].answer) { tacno++; } else {
-                        //pritisli smo D, ali je D ne tacno
-                    }
-            }
-        }
-
-        i++;
-        /*
-                if (jsonData.length - 1 < i) {
-                    document.write("*****Yor score is : " + tacno + "*****");
-                }*/
-        generate(i);
-
-    }
     startTimer() {
         document.getElementById("timer").innerText = " " + this.timer + " sec";
     }
@@ -83,9 +60,12 @@ class Osoba {
 
 let slide = 0;
 var topTen = -1; //niko nije upisan u Top10
-let igrac;
+var igrac;
 let ime;
 let boja;
+
+pitanje2 = [4, 8, 12, 14, 15];
+s1 = 0;
 
 
 
@@ -128,12 +108,117 @@ $(document).ready(function() {
         $("#pr4").css("display", "block");
         slide = 3;
         igrac = new Osoba(ime, boja);
+
         //igrac.getOsoba();
-        igrac.startTimer();
         igrac.generateQuestion();
-
-
-
+        igrac.startTimer();
 
     })
+
+})
+document.getElementById("a").addEventListener('click', function() {
+    if (jsonData[igrac.pitanjeRed].opt1 == jsonData[igrac.pitanjeRed].answer) {
+        document.getElementById("a").style.background = "lightgreen";
+        igrac.poeni++;
+
+    } else {
+        document.getElementById("a").style.background = "red";
+        if (jsonData[igrac.pitanjeRed].opt2 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("b").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt3 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("c").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt4 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("d").style.background = "lightgreen";
+        }
+    }
+
+    igrac.pitanjeRed++;
+    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+
+
+
+
+
+})
+document.getElementById("b").addEventListener('click', function() {
+    if (jsonData[igrac.pitanjeRed].opt2 == jsonData[igrac.pitanjeRed].answer) {
+        document.getElementById("b").style.background = "lightgreen";
+        igrac.poeni++;
+    } else {
+        document.getElementById("b").style.background = "red";
+        if (jsonData[igrac.pitanjeRed].opt1 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("a").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt3 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("c").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt4 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("d").style.background = "lightgreen";
+        }
+    }
+    igrac.pitanjeRed++;
+    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+
+
+})
+document.getElementById("c").addEventListener('click', function() {
+    if (jsonData[igrac.pitanjeRed].opt3 == jsonData[igrac.pitanjeRed].answer) {
+        document.getElementById("c").style.background = "lightgreen";
+        igrac.poeni++;
+    } else {
+        document.getElementById("c").style.background = "red";
+        if (jsonData[igrac.pitanjeRed].opt1 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("a").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt2 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("b").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt4 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("d").style.background = "lightgreen";
+        }
+    }
+    igrac.pitanjeRed++;
+    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+})
+document.getElementById("d").addEventListener('click', function() {
+    if (jsonData[igrac.pitanjeRed].opt4 == jsonData[igrac.pitanjeRed].answer) {
+        document.getElementById("d").style.background = "lightgreen";
+        igrac.poeni++;
+    } else {
+        document.getElementById("d").style.background = "red";
+        if (jsonData[igrac.pitanjeRed].opt1 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("a").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt3 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("c").style.background = "lightgreen";
+        }
+        if (jsonData[igrac.pitanjeRed].opt2 == jsonData[igrac.pitanjeRed].answer) {
+            document.getElementById("b").style.background = "lightgreen";
+        }
+    }
+    igrac.pitanjeRed++;
+
+    window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+})
+
+document.getElementById("rez").addEventListener('click', function() {
+    if (document.getElementById("upis").value.toLowerCase() == jsonData[igrac.pitanjeRed].answer.toLowerCase()) {
+        document.getElementById("upis").value = "tačno je ";
+        igrac.poeni++;
+    } else {
+        document.getElementById("upis").value = "rezulta je " + jsonData[igrac.pitanjeRed].answer;
+    }
+    igrac.pitanjeRed++;
+    igrac.incS();
+    if (14 < igrac.pitanjeRed) {
+        document.getElementById("pr4").style.display = "none";
+
+        document.getElementById("pr5").style.display = "flex";
+
+    } else {
+        window.setTimeout("igrac.generateQuestion(igrac.pitanjeRed)", 3000);
+    }
+
 })
