@@ -48,13 +48,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="delete.php.php">
+                    <a href="delete.php">
                         
                         obrisi film
                     </a>
                 </li>
                 <li>
-                    <a href="viev.php">
+                    <a href="view.php">
                         
                         Vidi listu filmova
                     </a>
@@ -85,14 +85,14 @@
                     </div>
                 </div>
             </nav>
-
-  			<form method="GET">
-  				<div class="input-group">
-                    
-               <button type="submit" name="primeni">Primeni filtere </button>
-            </div>
-  			</form>
-      </div>
+				<div>
+					<!--
+					ovde pisi kod
+				-->
+					
+				</div>
+  			
+			</div>
    </div>
 
 	   

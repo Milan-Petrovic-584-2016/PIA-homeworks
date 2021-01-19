@@ -8,7 +8,6 @@ if (isset($_POST['submit'])){
  $result=$connection->query($query);
  $rez=$result->fetch_array();
  $id_film = $rez[0];
- echo "$id_film";
  
  if($id_film!=0){
     $Novinaziv=trim($_POST["Novinaziv"]);

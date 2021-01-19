@@ -42,13 +42,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="delete.php.php">
+                    <a href="delete.php">
                         
                         Obrisi film
                     </a>
                 </li>
                 <li>
-                    <a href="viev.php">
+                    <a href="view.php">
                         
                         Vidi listu filmova
                     </a>
@@ -87,7 +87,7 @@
 							trazeni
 						-->
 						<label for="naziv">Unesite precizno naziv filma koji zelite da menjate</label>
-					   <input type="text" class="form-control" id="naziv" name="naziv" placeholder="Naziv filma" >
+					   <input type="text" class="form-control" id="naziv" name="naziv" placeholder="Naziv filma" required>
 					</div>
 				
 					<div class="form-group ">
@@ -179,8 +179,8 @@
 					   <input type="number" class="form-control" id="trajanje" name="trajanje" placeholder="Trajanje u minutima">
 					</div>
 						  
-               <div class="form-group">
-						 <input type="submit" name="submit" id="submit" class="btn btn-info" value="Izmeni film" /> 
+     <div class="form-group">
+          <input type="submit" name="submit" id="submit" class="btn btn-info" value="Izmeni film" /> 
 					
 					</div>
 				

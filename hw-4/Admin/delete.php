@@ -48,13 +48,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="delete.php.php">
+                    <a href="delete.php">
                         
                         obrisi film
                     </a>
                 </li>
                 <li>
-                    <a href="viev.php">
+                    <a href="view.php">
                         
                         Vidi listu filmova
                     </a>
@@ -86,10 +86,20 @@
                 </div>
             </nav>
 
-  			<form method="GET">
-  				<div class="input-group">
-                    
-               <button type="submit" name="primeni">Primeni filtere </button>
+			<form  method="POST" action="obrisi.php">
+				<div  style="text-align: center">
+					<div class="form-group ">
+								<!--
+									trazeni
+								-->
+						<label for="naziv">Unesite precizno naziv filma koji zelite da izbrisete</label>
+						<input type="text" class="form-control" id="naziv" name="naziv" placeholder="Naziv filma" required>
+					</div>
+					<div class="form-group">
+						<input type="submit" name="submit" id="submit" class="btn btn-info" value="Obrisi film" /> 
+					
+					</div>
+					
             </div>
   			</form>
       </div>

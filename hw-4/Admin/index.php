@@ -42,13 +42,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="delete.php.php">
+                    <a href="delete.php">
                         
                         Obrisi film
                     </a>
                 </li>
                 <li>
-                    <a href="viev.php">
+                    <a href="view.php">
                         
                         Vidi listu filmova
                     </a>
