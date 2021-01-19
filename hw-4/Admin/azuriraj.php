@@ -3,49 +3,81 @@ if (isset($_POST['submit'])){
  $connection=new mysqli("localhost","root","","imdb",3308);
  
  
- $naslov=$_POST["naziv"];
+ $naslov=trim($_POST["naziv"]);
+ $query="SELECT id_film AS id FROM film WHERE naslov='$naslov'";
+ $result=$connection->query($query);
+ $rez=$result->fetch_array();
+ $id_film = $rez[0];
+ echo "$id_film";
  
-$opis=trim($_POST['opis']);
- $scenarista=$_POST["scenarista"];
- 
- $reziser=$_POST["reziser"];
- $prod_kuca=$_POST["prod_kuca"];
- $godina=$_POST["godina"];
- 
- $trajanje=$_POST["trajanje"];
- $s_ocena=0.0;
- $b_glasova=0;
- 
-
-$query="INSERT INTO film(naslov, opis, scenarista,  reziser, prod_kuca, godina, trajanje, s_ocena, b_glasova, slika) VALUES ('$naslov','$opis','$scenarista','$reziser','$prod_kuca','$godina','$trajanje','$s_ocena','$b_glasova','')";
-$result1=$connection->query($query);
-
-
-
-
-//GRESKA
-$query="SELECT MAX(id_film) AS id FROM film";
-$result=$connection->query($query);
-$rez=$result->fetch_array();
-$id_film = $rez[0];
-
-$opis=trim($_POST['opis']);
-
-
-$targetDir =  realpath(dirname(__FILE__));
-$fileName = basename($_FILES["file"]["name"]);
-$novid=str_replace('\\','_',$fileName);
-$fileName=$novid;
-$targetDir='../User';
-$targetFilePath = $targetDir ."\upload"."\\". $fileName;
-$fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
-move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
-
-//$query="UPDATE film SET slika='$fileName' WHERE id_film='$id_film['id']'";
-$query="UPDATE film SET slika='$fileName' WHERE id_film='$id_film'";
-$result3=$connection->query($query);
-
-
+ if($id_film!=0){
+    $Novinaziv=trim($_POST["Novinaziv"]);
+    if($Novinaziv!=""){
+        $query="UPDATE film SET naslov='$Novinaziv' WHERE id_film='$id_film'";
+        $result=$connection->query($query);
+    }
+    $opis2=trim($_POST['opis']);
+    if($opis2!=''){
+          $query="SELECT opis FROM film WHERE id_film='$id_film'";
+          $result=$connection->query($query);
+          $rez=$result->fetch_array();
+          $opis1=$rez[0];
+          
+          $opis=$opis1." ".$opis2;
+          $query="UPDATE film SET opis='$opis' WHERE id_film='$id_film'";
+          $result=$connection->query($query);      
+    }
+    
+    
+    $scenarista=trim($_POST["scenarista"]);
+    if($scenarista!=""){
+        $query="UPDATE film SET scenarista='$scenarista' WHERE id_film='$id_film'";
+        $result=$connection->query($query);
+    }
+    
+    
+    $reziser=trim($_POST["reziser"]);
+    if($reziser!=""){
+        $query="UPDATE film SET reziser='$reziser' WHERE id_film='$id_film'";
+        $result=$connection->query($query);
+    }
+    
+    $prod_kuca=trim($_POST["prod_kuca"]);
+    if($prod_kuca!=""){
+        $query="UPDATE film SET prod_kuca='$prod_kuca' WHERE id_film='$id_film'";
+        $result=$connection->query($query);
+    }
+    
+    $godina=$_POST["godina"];
+    if($godina!=""){
+        $query="UPDATE film SET godina='$godina' WHERE id_film='$id_film'";
+        $result=$connection->query($query);
+    }
+    
+    $trajanje=$_POST["trajanje"];
+    if($trajanje!=""){
+        $query="UPDATE film SET trajanje='$trajanje' WHERE id_film='$id_film'";
+        $result=$connection->query($query);
+    }
+    
+    
+   
+   $targetDir =  realpath(dirname(__FILE__));
+   $fileName = basename($_FILES["file"]["name"]);
+   if($fileName!= ''){
+       $novid=str_replace('\\','_',$fileName);
+       $fileName=$novid;
+       $targetDir='../User';
+       $targetFilePath = $targetDir ."\upload"."\\". $fileName;
+       $fileType = pathinfo($targetFilePath,PATHINFO_EXTENSION);
+       move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
+           
+           
+       $query="UPDATE film SET slika='$fileName' WHERE id_film='$id_film'";
+       $result3=$connection->query($query);
+   }
+   
+   
    $glumac = count($_POST["ime"]);
    if ($glumac > 0) {
    for ($i=0; $i < $glumac; $i++) { 
@@ -91,7 +123,7 @@ $result3=$connection->query($query);
   }
   
   
-   $zanri = count($_POST["zanr"]);
+ $zanri = count($_POST["zanr"]);
     if($zanri > 0)  
     {  
          for($i=0; $i<$zanri; $i++)  
@@ -130,7 +162,13 @@ $result3=$connection->query($query);
     {  
          echo "Please Enter Name";  
     }
+   
+   header('Location: update.php');
+ }
+ 
+    echo "taj film ne postoji u bazi".'</br>';
+    echo "<a href='update.php'>vrati se na predhodnu stranu</a>";
 }
 
-header('Location: index.php');
+
  ?> 

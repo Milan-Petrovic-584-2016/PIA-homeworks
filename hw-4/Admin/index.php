@@ -88,7 +88,7 @@
 				
 					<div class="form-group ">
 						<label for="naziv">Naziv filma</label>
-					   <input type="text" class="form-control" id="naziv" name="naziv" placeholder="Naziv filma">
+					   <input type="text" class="form-control" id="naziv" name="naziv" placeholder="Naziv filma" required>
 					</div>
 							
 						<!--
@@ -97,7 +97,7 @@
 							
 					<div class="form-group">
 							<label for="opis">Opis filma</label>
-							<textarea class="form-control" id="opis" name="opis" rows="10" cols="60"></textarea>
+							<textarea class="form-control" id="opis" name="opis" rows="10" cols="100"required></textarea>
 					</div>
 					<div class="form-group">
 						<!--
@@ -106,7 +106,7 @@
 						<div class="table-responsive">  
                                <table class="table table-bordered" id="dynamic_field">  
                                     <tr>  
-                                         <td><input type="text" name="zanr[]" placeholder="Unesi naziv zanra" class="form-control name_list" /></td>  
+                                         <td><input type="text" name="zanr[]" placeholder="Unesi naziv zanra" class="form-control name_list" required/></td>  
                                          <td><button type="button" name="add" id="add" class="btn btn-success">Dodaj jos jedan zanr</button></td>  
                                     </tr>  
                                </table> 
@@ -119,21 +119,21 @@
 							scenarista
 						-->
 						<label for="scenarista">Scenarista</label>
-					   <input type="text" class="form-control" id="scenarista" name="scenarista" placeholder="Scenarista">
+					   <input type="text" class="form-control" id="scenarista" name="scenarista" placeholder="Scenarista" required>
 					</div>
 					<div class="form-group">
 						<!--
 							reziser
 						-->
 						<label for="reziser">Reziser</label>
-					   <input type="text" class="form-control" id="reziser" name="reziser" placeholder="Reziser">
+					   <input type="text" class="form-control" id="reziser" name="reziser" placeholder="Reziser" required>
 					</div>
 					<div class="form-group">
 						<!--
 							producentska kuca
 						-->
 						<label for="prod_kuca">Producentska kuca</label>
-					   <input type="text" class="form-control" id="prod_kuca" name="prod_kuca" placeholder="Producentska kuca">
+					   <input type="text" class="form-control" id="prod_kuca" name="prod_kuca" placeholder="Producentska kuca" required>
 					</div>
 					<div class="form-group">
 						<!--
@@ -142,8 +142,8 @@
 						<div class="table-responsive">  
                               <table class="table table-bordered" id="dynamic_field1">  
                                  <tr>
-												<td><input type="text" name="ime[]" placeholder="Unesite ime glumca" class="form-control name_list" /></td>
-												<td><input type="text" name="prezime[]" placeholder="Unesite preizme glumca" class="form-control name_list"/></td>
+												<td><input type="text" name="ime[]" placeholder="Unesite ime glumca" class="form-control name_list" required/></td>
+												<td><input type="text" name="prezime[]" placeholder="Unesite preizme glumca" class="form-control name_list" required/></td>
 												<td><button type="button" name="add1" id="add1" class="btn btn-primary">Dodaj jos jednog glumca</button></td>  
 											</tr> 
                               </table> 
@@ -155,21 +155,21 @@
 							godina izdanja
 						-->
 						<label for="godina">Godina izdanja</label>
-					   <input type="number" class="form-control" id="godina" name="godina" placeholder="Godina izdanja">
+					   <input type="number" class="form-control" id="godina" name="godina" placeholder="Godina izdanja" required>
 					</div>
 					<div class="form-group">
 						<!--
 							slika
 						-->
 						<label for="file">Okaci poster filma(MAX 2MB):</label>
-					   <input type="file" id="file"  name="file">
+					   <input type="file" id="file"  name="file" required>
 					</div>
 					<div class="form-group">
 						<!--
 							trajanje u minutima
 						-->
 						<label for="trajanje">Trajanje u minutima</label>
-					   <input type="number" class="form-control" id="trajanje" name="trajanje" placeholder="Trajanje u minutima">
+					   <input type="number" class="form-control" id="trajanje" name="trajanje" placeholder="Trajanje u minutima" required>
 					</div>
 						  
                <div class="form-group">
@@ -207,7 +207,7 @@
 		var j=1;	 //za glumca	
       $('#add').click(function(){  
            i++;  
-           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="zanr[]" placeholder="Unesi naziv zanra" class="form-control name_list" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="zanr[]" placeholder="Unesi naziv zanra" class="form-control name_list" required/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       });  
       $(document).on('click', '.btn_remove', function(){  
            var button_id = $(this).attr("id");
@@ -216,7 +216,7 @@
 		
 		$('#add1').click(function(){
            j++;  
-           $('#dynamic_field1').append('<tr id="row0'+j+'"><td><input type="text" name="ime[]" placeholder="Unesite ime glumca" class="form-control name_list" /></td><td><input type="text" name="prezime[]" placeholder="Unesite preizme glumca" class="form-control name_list"/></td><td><button type="button" name="remove1" id="'+j+'" class="btn btn-danger btn_remove1">X</button></td></tr>');  
+           $('#dynamic_field1').append('<tr id="row0'+j+'"><td><input type="text" name="ime[]" placeholder="Unesite ime glumca" class="form-control name_list" required/></td><td><input type="text" name="prezime[]" placeholder="Unesite preizme glumca" class="form-control name_list"/></td><td><button type="button" name="remove1" id="'+j+'" class="btn btn-danger btn_remove1">X</button></td></tr>');  
       });  
       $(document).on('click', '.btn_remove1', function(){  
            var button_id = $(this).attr("id");
