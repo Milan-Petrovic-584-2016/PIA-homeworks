@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	
-    $connection=new mysqli("localhost","root","","imdb",3308);
+	$connection=new mysqli("localhost","root","","imdb",3308);	
+    $conn =mysqli_connect("localhost:3308","root","","imdb");
 ?>
 
 <html>
@@ -38,7 +38,7 @@
                 <li class="active">
                     <a href="index.php">
                         
-                        Dodaj fil
+                        Dodaj film
                     </a>
                 </li>
                 <li>
@@ -50,7 +50,7 @@
                 <li>
                     <a href="delete.php">
                         
-                        obrisi film
+                        Obrisi film
                     </a>
                 </li>
                 <li>
@@ -86,10 +86,41 @@
                 </div>
             </nav>
 				<div>
-					<!--
-					ovde pisi kod
-				-->
 					
+					
+					<table class="table table-bordered mb-5" >
+					<thead>
+						<tr class="table-success">
+							<th>ID</th>
+							<th>Poster</th>
+							<th>Naslov</th>
+							<th>Srednja Ocena</th>
+							<th>Glasalo</th>
+						</tr>
+					</thead>
+					<?php
+					
+						
+						
+						$query = "SELECT * FROM film ";
+						$result = $connection->query($query);
+						foreach ($result as $row) {
+						?>
+						
+						<tr>
+							<td> <?php echo $row['id_film'] ?></td>
+							<td > <?php $image = file_get_contents('../User/upload/'.$row['slika']); //ovo promeni kod usera
+										//header("Content-type: image/jpeg");
+									echo '<img src="data:image;base64,'.base64_encode($image).'" alt="Image" style="width: 70px; height: 70px; padding-top: 5px;" >'; ?></td>
+							<td> <?php echo $row['naslov'] ?></td>
+							<td> <?php echo $row['s_ocena'] ?></td>
+							<td> 	<?php echo $row['b_glasova'] ?></td>
+						</tr>
+						<?php
+					}
+							
+					?>
+				</table>
 				</div>
   			
 			</div>
@@ -112,5 +143,9 @@
         });
     </script>
 </body>
+
+<style>
+	th,td,tr{text-align:center;}
+</style>
 
 </html>

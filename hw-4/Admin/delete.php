@@ -38,7 +38,7 @@
                 <li class="active">
                     <a href="index.php">
                         
-                        Dodaj fil
+                        Dodaj film
                     </a>
                 </li>
                 <li>
