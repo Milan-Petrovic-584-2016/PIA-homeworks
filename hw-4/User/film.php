@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	session_start(); //izmeni
 	if(!isset($_SESSION['brind'])){
         header('Location: index.php');
         exit();
@@ -16,14 +16,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>korisnik strana</title>
-	<style>
-			th,td,tr{text-align:center;}
-	</style>
+
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="style4.css">
-
+	
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -42,13 +40,13 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#">
+                    <a href="UserPage.php">
                         
                         Pretraga po nazivu filma
                     </a>
                 </li>
                 <li>
-                    <a href="pretraga_zanr.php">
+                    <a href="#">
                         Pretraga po zanru filma
                     </a>
                 </li>
@@ -93,43 +91,12 @@
                 </div>
             </nav>
 
-  			<div>
-					
-					
-					<table class="table table-bordered mb-5" >
-					<thead>
-						<tr class="table-success">
-							<th>ID</th>
-							<th>Poster</th>
-							<th>Naslov</th>
-							<th>Srednja Ocena</th>
-							<th>Glasalo</th>
-						</tr>
-					</thead>
-					<?php
-					
-						
-						
-						$query = "SELECT * FROM film ";
-						$result = $connection->query($query);
-						foreach ($result as $row) {
-						?>
-						
-						<tr>
-							<td> <?php echo $row['id_film'] ?></td>
-							<td > <?php $image = file_get_contents('./upload/'.$row['slika']); //ovo promeni kod usera
-										//header("Content-type: image/jpeg");
-									echo '<img src="data:image;base64,'.base64_encode($image).'" alt="Image" style="width: 70px; height: 70px; padding-top: 5px;" >'; ?></td>
-							<td> <?php echo $row['naslov'] ?></td>
-							<td> <?php echo $row['s_ocena'] ?></td>
-							<td> 	<?php echo $row['b_glasova'] ?></td>
-						</tr>
-						<?php
-					}
-							
-					?>
-				</table>
-			</div>
+  			<form method="GET">
+  				<div class="input-group">
+                    
+                    <button type="submit" name="primeni">izvrsi </button>
+                </div>
+  			</form>
 	    </div>
     </div>
 
@@ -148,5 +115,7 @@
         });
     </script>
 </body>
-
+<style>
+		th,td,tr{text-align:center;}
+</style>
 </html>
