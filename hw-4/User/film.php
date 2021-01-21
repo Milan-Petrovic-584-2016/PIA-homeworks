@@ -1,10 +1,11 @@
 <?php
 	session_start(); //izmeni
-	if(!isset($_SESSION['brind'])){
-        header('Location: index.php');
+	if(!isset($_SESSION['film'])){
+        header('Location: pretraga_zanr.php');
         exit();
     }
     $id=$_SESSION['brind'];
+	$if_film=$_SESSION['film'];
     $connection=new mysqli("localhost","root","","imdb",3308);
 ?>
 

@@ -112,11 +112,13 @@
 						
 						$query = "SELECT * FROM film ";
 						$result = $connection->query($query);
+						$j=0;
 						foreach ($result as $row) {
+							$j+=1;
 						?>
 						
 						<tr>
-							<td> <?php echo $row['id_film'] ?></td>
+							<td> <?php echo $j ?></td>
 							<td > <?php $image = file_get_contents('./upload/'.$row['slika']); //ovo promeni kod usera
 										//header("Content-type: image/jpeg");
 									echo '<img src="data:image;base64,'.base64_encode($image).'" alt="Image" style="width: 70px; height: 70px; padding-top: 5px;" >'; ?></td>

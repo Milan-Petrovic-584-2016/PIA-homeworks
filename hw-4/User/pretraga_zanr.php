@@ -107,11 +107,11 @@
                     <button type="submit" name="primeni">Primeni filtere</button>
                
   			</form>
-			
+			<form method="POST">
 				<table class="table table-bordered mb-6" >
 					<thead>
 						<tr class="table-success">
-							<th>ID</th>
+							<th>Redni Broj</th>
 							<th>Poster</th>
 							<th>Naslov</th>
 							<th>Srednja Ocena</th>
@@ -125,18 +125,21 @@
 						$zanr=explode(":",$predmet=$_GET['zanr'])[0];
 						$query = "SELECT * FROM film WHERE id_film=(SELECT id_film FROM film_zanr WHERE id_zanr=(SELECT id_zanr FROM zanr WHERE naziv='$zanr')) ";
 						$result = $connection->query($query);
+						$j=0;
 						foreach ($result as $row) {
+							$j+=1;
 						?>
 						
 						<tr>
-							<td> <?php echo $row['id_film'] ?></td>
-							<td > <?php $image = file_get_contents('./upload/'.$row['slika']); //ovo promeni kod usera
-										//header("Content-type: image/jpeg");
-									echo '<img src="data:image;base64,'.base64_encode($image).'" alt="Image" style="width: 70px; height: 70px; padding-top: 5px;" >'; ?></td>
+							<td> <?php echo $j; ?></td>
+							<td> <?php echo "<img src='./upload/$row[slika]' height=70px weight=70px/>";?></td>
 							<td> <?php echo $row['naslov'] ?></td>
 							<td> <?php echo $row['s_ocena'] ?></td>
 							<td> 	<?php echo $row['b_glasova'] ?></td>
-							<td>0</td>
+							<td>
+								
+								<?php echo "<button type='submit' name='button[$row[id_film]]' value='$row[id_film]'> vidi opis filma </button>"; ?>
+							</td>
 							<!-- Dodaj button za svaku kolonu za prelazak na sledeci korak-->
 						</tr>
 						<?php
@@ -144,9 +147,33 @@
 					}		
 					?>
 				</table>
+			</form>
 	    </div>
     </div>
-
+	<?php
+			if(isset($_POST['button'])){
+				$id=$_POST['button'][1];//vrednost
+				echo $id;
+				$_SESSION['film']=$id;
+				header('Location: film.php?id='.$id);
+				exit();
+			}
+			   
+				
+			
+			
+			
+			
+			
+			foreach ($result as $res) {
+				
+				/*.$res['id_film']])){
+					$_SESSION['film']=$res['id_film'];
+					header('Location: film.php?id='.$res['id_film']);
+				}*/
+		}
+			
+	?>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <!-- Popper.JS -->
