@@ -5,7 +5,7 @@
         exit();
     }
     $id=$_SESSION['brind'];
-	$if_film=$_SESSION['film'];
+	$id_film=$_SESSION['film'];
     $connection=new mysqli("localhost","root","","imdb",3308);
 ?>
 
@@ -92,13 +92,87 @@
                 </div>
             </nav>
 
-  			<form method="GET">
-  				<div class="input-group">
-                    
-                    <button type="submit" name="primeni">izvrsi </button>
-                </div>
-  			</form>
-	    </div>
+  			<div style="text-align: center;">
+				<?php
+					$query="SELECT * from film where id_film='$id_film'";
+					$result=$connection->query($query);
+					foreach($result as $rez){
+					
+				?>
+				<h1> Opis <?php echo $rez['naslov'];?> filma</h1>
+			</div>
+			<div id='flex'>
+				<div>
+					 <?php echo "<img src='./upload/$rez[slika]'  />";?>
+					 <div id='ocena'>
+						ocena: <?php echo $rez['s_ocena'];?> / broj glasova: <?php echo $rez['b_glasova'];?>
+					 </div>
+				</div>
+				<table class="table table-bordered " >
+					<tr>
+						<th class="table-success">Godina izdanja:</th>
+						<td><?php echo $rez['godina'];?>. godine je izasao</td>
+					</tr>
+					<tr>
+						<th class="table-success">Trajanje</th>
+						<td><?php echo $rez['trajanje'];?> minuta traje</td>
+					</tr>
+						<th class="table-success">
+							Scenarista
+						</th>
+						<td><?php echo $rez['scenarista'];?></td>
+					<tr>
+						<th class="table-success">
+							reziser
+						</th>
+						<td><?php echo $rez['reziser'];?></td>
+					</tr>
+					<tr>
+						<th class="table-success">Produkciska kuca:</th>
+						<td><?php echo $rez['prod_kuca'];?></td>
+					</tr>
+					<tr>
+						<th class="table-success">Lista glumaca:</th>
+						<?php
+							$glumci="";
+							$query="SELECT * from glumac where id_glumca IN (SELECT id_glumca from film_glumac WHERE id_film='$id_film')";
+							$result=$connection->query($query);
+							foreach($result as  $glumac){
+								$glumci.=" ".$glumac['ime']." ".$glumac['prezime']."</br>	";
+							}
+						?>
+						<td><?php echo $glumci;?></td>
+						
+					</tr>
+					<tr>
+						<th class="table-success">Zanr:</th>
+						<?php
+							$zanr="";
+							$query="SELECT * from zanr where id_zanr IN (SELECT id_zanr from film_zanr WHERE id_film='$id_film')";
+							$result=$connection->query($query);
+							foreach($result as  $zanri){
+								$zanr.=" ".$zanri['naziv']."</br>	";
+							}
+						?>
+						<td><?php echo $zanr;?></td>
+					</tr>
+				</table>
+			
+	        </div>
+			<div>
+				<h2>Opis</h2>
+				<P>
+					<?php echo $rez['opis'];?>
+				</P>
+				<?php
+					}
+			?>
+			</div>
+			<div id='star'>
+				
+			</div>
+		</div>
+				
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -116,7 +190,19 @@
         });
     </script>
 </body>
+
 <style>
-		th,td,tr{text-align:center;}
+	img{width:15em;height:30em;}
+	#ocena{width:15em; text-align: center}
+	#flex{display:flex;flex-flow:left}
+	th,tr,td{text-align:center;align-self:center;}
+	td{text-align:right;}
+	tr{width:100%;}
+	table{float right;  }
+	h2{padding-top:2em;}
+	h1{padding-bottom:2em;}
+	#star{}
+	
+	
 </style>
 </html>
