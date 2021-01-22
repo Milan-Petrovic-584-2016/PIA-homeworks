@@ -44,7 +44,7 @@
                 <li class="active">
                     <a href="#">
                         
-                        Pretraga po nazivu filma
+                       Pogledaj listu filmova
                     </a>
                 </li>
                 <li>

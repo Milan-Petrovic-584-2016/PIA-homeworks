@@ -7,6 +7,34 @@
     $id=$_SESSION['brind'];
 	$id_film=$_SESSION['film'];
     $connection=new mysqli("localhost","root","","imdb",3308);
+	
+	 if (isset($_POST['save'])) {
+		$ratedIndex = $connection->real_escape_string($_POST['ratedIndex']);//ocena od korisnika
+		$ratedIndex++;//uvecamo ocenu korisnika, jer smo reangirali od 0 , a ne od 1-10
+		
+		
+		$query = "SELECT * FROM ocenio";
+		$result = $connection->query($query);
+		if(mysqli_num_rows($result)<1){
+			$connection->query("INSERT INTO ocenio (id_korisnik,id_film,ocena) VALUES ('$id','$id_film','$ratedIndex')");
+		} else
+			$connection->query("UPDATE ocenio SET ocena='$ratedIndex' WHERE id_korisnik='$id'");
+		
+		exit(json_encode(array('id' => $uID)));
+		
+		$sql = $connection->query("SELECT id_korisnik FROM ocenio");
+		$numR = $sql->num_rows;
+		
+		$sql = $connection->query("SELECT SUM(ocena) AS total FROM stars");
+		$rData = $sql->fetch_array();
+		$total = $rData['total'];
+		
+		$avg = $total / $numR;
+		$connection->query("UPDATE film SET s_ocena='$avg',b_glasova='$numR' WHERE id_film='$id_film'");
+	}
+		
+	
+	
 ?>
 
 <html>
@@ -22,7 +50,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="style4.css">
-	
+	<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="http://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+	<script src="rating.js"></script>
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -43,11 +73,11 @@
                 <li class="active">
                     <a href="UserPage.php">
                         
-                        Pretraga po nazivu filma
+                        Pogledaj listu filmova
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="pretraga_zanr.php">
                         Pretraga po zanru filma
                     </a>
                 </li>
@@ -168,26 +198,38 @@
 					}
 			?>
 			</div>
-			<div id='star'>
+			<div align='center' style="background:#00FFFF;padding: 50px;">
+				Ocenite film: 
+				<i class="fas fa-star fa-2x " data-index="0"></i>
+				<i class="fas fa-star fa-2x " data-index="1"></i>
+				<i class="fas fa-star fa-2x " data-index="2"></i>
+				<i class="fas fa-star fa-2x " data-index="3"></i>
+				<i class="fas fa-star fa-2x " data-index="4"></i>
+				<i class="fas fa-star fa-2x " data-index="5"></i>
+				<i class="fas fa-star fa-2x " data-index="6"></i>
+				<i class="fas fa-star fa-2x " data-index="7"></i>
+				<i class="fas fa-star fa-2x " data-index="8"></i>
+				<i class="fas fa-star fa-2x " data-index="9"></i>
 				
 			</div>
+
+
 		</div>
 				
     </div>
-
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	
+    
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
+	
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
-        });
+		});
     </script>
 </body>
 
@@ -201,7 +243,6 @@
 	table{float right;  }
 	h2{padding-top:2em;}
 	h1{padding-bottom:2em;}
-	#star{}
 	
 	
 </style>

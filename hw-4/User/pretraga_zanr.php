@@ -42,7 +42,7 @@
                 <li class="active">
                     <a href="UserPage.php">
                         
-                        Pretraga po nazivu filma
+                        Pogledaj listu filmova
                     </a>
                 </li>
                 <li>
